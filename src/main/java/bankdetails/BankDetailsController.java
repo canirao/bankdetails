@@ -1,6 +1,7 @@
 package bankdetails;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -60,9 +61,11 @@ public class BankDetailsController {
 		List<BankCardDetails> bdPojoList = new ArrayList<BankCardDetails>();
 		BufferedReader buffReader = null;
 		try {
+			ClassLoader classLoader = getClass().getClassLoader();
+			File file = new File(classLoader.getResource("BankDetailsData.txt")
+					.getFile());
 
-			buffReader = new BufferedReader(new FileReader(
-					"/BankDetailsData.txt"));
+			buffReader = new BufferedReader(new FileReader(file));
 			String line = "";
 
 			while ((line = buffReader.readLine()) != null) {
